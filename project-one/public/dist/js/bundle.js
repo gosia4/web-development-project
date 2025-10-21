@@ -1,0 +1,1 @@
+(()=>{"use strict";new class{constructor(e){this.message=e}greet(){const e=document.getElementById("output");e&&(e.innerHTML=this.message)}}("Hallo in TypeScript and SASS!").greet();const e=document.getElementById("clickMe");e&&e.addEventListener("click",()=>{alert("Button geklickt!")}),console.log("Die Applikation wurde erfolgreich geladen!")})();
