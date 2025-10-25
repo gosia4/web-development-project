@@ -1,17 +1,48 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project One - TypeScript & SASS</title>
+    <title>Product Nutrition Scanner</title>
     <link rel="stylesheet" href="dist/css/custom.css">
 </head>
 <body>
-    <div class="container">
-        <h1 class="header">Hallo in meinem Projekt!</h1>
-        <div id="output">Laden...</div>
-        <button id="clickMe" class="button">Klick mich!</button>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-barcode"></i> Nutrition Scanner
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <!-- Search Section -->
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Scan Product Barcode</h5>
+                        
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="barcodeInput" placeholder="Enter barcode or scan...">
+                            <button class="btn btn-outline-secondary" type="button" id="scanBtn">Scan Barcode</button>
+                        </div>
+                        
+                        <button class="btn btn-primary w-100" id="searchBtn">Search Product</button>
+                    </div>
+                </div>
+
+                <!-- Error Alert -->
+                <div class="alert alert-danger mt-3" id="errorAlert" style="display: none;"></div>
+
+                <!-- Product Results -->
+                <div id="productResult"></div>
+            </div>
+        </div>
     </div>
-    <script src="dist/js/main.js"></script>
+
+    <script src="dist/js/bundle.js"></script>
 </body>
 </html>

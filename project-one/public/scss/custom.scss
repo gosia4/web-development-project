@@ -1,28 +1,35 @@
-@use "sass:color";
+// ?@import '../../node_modules/bootstrap/scss/bootstrap';
+// @use "bootstrap" as *;
 $primary-color: #3498db;
 $secondary-color: #2ecc71;
 
+
+@use "../node_modules/bootstrap/scss/bootstrap" as *;
+
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 20px;
-  background-color: #f4f4f4;
+  font-family: 'Arial', sans-serif;
+  // background-color: #f8f9fa;
+  background-color: $body-bg; // w zależności od motywu jasny/ciemny
 }
 
-.header {
-  color: $primary-color;
-  text-align: center;
+.navbar-brand {
+  font-weight: bold;
 }
 
-.button {
-  background-color: $secondary-color;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-
+.product-card {
+  transition: transform 0.2s;
+  
   &:hover {
-    background-color: color.adjust($secondary-color, $lightness: -10%);
+    transform: translateY(-5px);
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .navbar-brand {
+    font-size: 1.1rem;
+  }
+  
+  .search-container {
+    padding: 0 15px;
   }
 }
