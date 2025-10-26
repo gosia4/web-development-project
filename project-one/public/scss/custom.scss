@@ -1,15 +1,7 @@
-// ?@import '../../node_modules/bootstrap/scss/bootstrap';
-// @use "bootstrap" as *;
-$primary-color: #3498db;
-$secondary-color: #2ecc71;
-
-
 @use "../node_modules/bootstrap/scss/bootstrap" as *;
 
 body {
   font-family: 'Arial', sans-serif;
-  // background-color: #f8f9fa;
-  background-color: $body-bg; // w zależności od motywu jasny/ciemny
 }
 
 .navbar-brand {
@@ -24,12 +16,44 @@ body {
   }
 }
 
+@media (prefers-color-scheme: dark) {
+  .navbar {
+    background-color: #3498db !important;
+  }
+  
+  .card {
+    background-color: $gray-900;
+    color: $white;
+  }
+}
+
 @include media-breakpoint-down(sm) {
+  body {
+    padding: 0 10px;
+  }
+  
   .navbar-brand {
     font-size: 1.1rem;
   }
   
   .search-container {
-    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 10px;
+  }
+  
+  #barcodeInput,
+  #scanBtn,
+  #searchBtn {
+    width: 100%;
+  }
+  
+  .card {
+    margin-bottom: 1rem;
+  }
+  
+  h4 {
+    font-size: 1rem;
   }
 }

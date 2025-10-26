@@ -11875,12 +11875,42 @@ body {
   transform: translateY(-5px);
 }
 
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #212529 !important;
+    color: #dee2e6;
+  }
+  .navbar {
+    background-color: #3498db !important;
+  }
+  .card {
+    background-color: #212529;
+    color: #fff;
+  }
+}
 @media (max-width: 575.98px) {
+  body {
+    padding: 0 10px;
+  }
   .navbar-brand {
     font-size: 1.1rem;
   }
   .search-container {
-    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 10px;
+  }
+  #barcodeInput,
+  #scanBtn,
+  #searchBtn {
+    width: 100%;
+  }
+  .card {
+    margin-bottom: 1rem;
+  }
+  h4 {
+    font-size: 1rem;
   }
 }
 
