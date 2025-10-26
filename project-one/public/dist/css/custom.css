@@ -11862,6 +11862,7 @@ textarea.form-control-lg {
 body {
   font-family: "Arial", sans-serif;
   background-color: #fff;
+  color: #212529;
 }
 
 .navbar-brand {
@@ -11878,13 +11879,17 @@ body {
 @media (prefers-color-scheme: dark) {
   body {
     background-color: #212529 !important;
-    color: #dee2e6;
+    color: #fff !important;
   }
   .navbar {
     background-color: #3498db !important;
   }
   .card {
-    background-color: #212529;
+    background-color: #343a40;
+    color: #fff;
+    border-color: #495057;
+  }
+  h4 {
     color: #fff;
   }
 }

@@ -2,6 +2,8 @@
 
 body {
   font-family: 'Arial', sans-serif;
+  background-color: $white;
+  color: $gray-900;
 }
 
 .navbar-brand {
@@ -17,12 +19,22 @@ body {
 }
 
 @media (prefers-color-scheme: dark) {
+  body {
+    background-color: $gray-900 !important;
+    color: $white !important;
+  }
+  
   .navbar {
     background-color: #3498db !important;
   }
   
   .card {
-    background-color: $gray-900;
+    background-color: $gray-800;
+    color: $white;
+    border-color: $gray-700;
+  }
+  
+  h4 {
     color: $white;
   }
 }

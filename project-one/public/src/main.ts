@@ -10,15 +10,24 @@ class ProductSearch {
   }
 
   private initializeEventListeners(): void {
-    $('#searchBtn').on('click', () => this.searchProduct());
-    $('#barcodeInput').on('keypress', (e) => {
-      if (e.key === 'Enter') this.searchProduct();
+    document.getElementById('searchBtn')?.addEventListener('click', () => {
+      this.searchProduct();
     });
-    $('#scanBtn').on('click', () => this.startBarcodeScanner());
+
+    document.getElementById('barcodeInput')?.addEventListener('keypress', (e) => {
+      if ((e as KeyboardEvent).key === 'Enter') {
+        this.searchProduct();
+      }
+    });
+
+    document.getElementById('scanBtn')?.addEventListener('click', () => {
+      this.startBarcodeScanner();
+    });
   }
 
   private searchProduct(): void {
-    const barcode = ($('#barcodeInput').val() as string).trim();
+    const input = document.getElementById('barcodeInput') as HTMLInputElement;
+    const barcode = input?.value.trim() || '';
     
     if (!barcode) {
       this.showError('Please enter a barcode');
@@ -29,8 +38,8 @@ class ProductSearch {
       url: `https://world.openfoodfacts.org/api/v0/product/${barcode}.json`,
       method: 'GET',
       success: (data: any) => {
-        data.status === 1 
-          ? this.displayProductInfo(data.product) 
+        data.status === 1
+          ? this.displayProductInfo(data.product)
           : this.showError('Product not found');
       },
       error: () => this.showError('Error fetching product data')
@@ -67,23 +76,30 @@ class ProductSearch {
       </div>
     `);
     
-    $('#errorAlert').hide();
+    document.getElementById('errorAlert')?.classList.add('d-none');
   }
 
   private showError(message: string): void {
-    $('#errorAlert').text(message).show();
+    const errorAlert = document.getElementById('errorAlert');
+    if (errorAlert) {
+      errorAlert.textContent = message;
+      errorAlert.classList.remove('d-none');
+    }
     $('#productResult').empty();
   }
 
   private startBarcodeScanner(): void {
+    const qrReader = document.getElementById('qr-reader');
+    if (!qrReader) return;
+
     if (this.scanner) {
       this.scanner.clear();
       this.scanner = null;
-      $('#qr-reader').hide();
+      qrReader.classList.add('d-none');
       return;
     }
 
-    $('#qr-reader').show();
+    qrReader.classList.remove('d-none');
     
     this.scanner = new Html5QrcodeScanner(
       "qr-reader",
@@ -93,16 +109,18 @@ class ProductSearch {
 
     this.scanner.render(
       (decodedText: string) => {
-        $('#barcodeInput').val(decodedText);
+        const input = document.getElementById('barcodeInput') as HTMLInputElement;
+        if (input) input.value = decodedText;
         this.searchProduct();
         this.scanner?.clear();
         this.scanner = null;
-        $('#qr-reader').hide();
+        qrReader.classList.add('d-none');
       },
-      (errorMessage: string) => {} // Ignoruj błędy skanowania
-      
+      () => {}
     );
   }
 }
 
-$(document).ready(() => new ProductSearch());
+document.addEventListener('DOMContentLoaded', () => {
+  new ProductSearch();
+});
