@@ -69,3 +69,19 @@ body {
     font-size: 1rem;
   }
 }
+.nutri-eco-img {
+  width: 100px;
+  height: auto;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+.eco-score-letter {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.product-card img.img-fluid {
+  max-height: 200px;
+  object-fit: contain;
+}

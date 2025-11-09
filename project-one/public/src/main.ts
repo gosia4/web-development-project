@@ -25,6 +25,39 @@ class ProductSearch {
     });
   }
 
+  private generateEcoScoreImage(score: string | undefined): string {
+    if (!score) return 'Nicht verfügbar';
+
+    const upper = score.toUpperCase();
+    const validScores = ['A', 'B', 'C', 'D', 'E'];
+
+    if (validScores.indexOf(upper) === -1) return 'Nicht verfügbar';
+
+    return `
+      <span class="eco-score-letter">${upper}</span>
+      <img 
+        src="https://static.openfoodfacts.org/images/attributes/dist/green-score-${upper.toLowerCase()}.svg"
+        alt="Eco-Score ${upper}"
+        class="nutri-eco-img">
+    `;
+  }
+
+  private generateNutriScoreImage(score: string | undefined): string {
+    if (!score) return 'Nicht verfügbar';
+
+    const lower = score.toLowerCase();
+    const validScores = ['a', 'b', 'c', 'd', 'e'];
+
+    if (validScores.indexOf(lower) === -1) return 'Nicht verfügbar';
+
+    return `
+      <img 
+        src="https://static.openfoodfacts.org/images/misc/nutriscore-${lower}.svg" 
+        alt="Nutri-Score ${score.toUpperCase()}" 
+        class="nutri-eco-img">
+    `;
+  }
+
   private searchProduct(): void {
     const input = document.getElementById('barcodeInput') as HTMLInputElement;
     const barcode = input?.value.trim() || '';
@@ -60,8 +93,8 @@ class ProductSearch {
               <h5 class="card-title">${product.product_name || 'Unknown Product'}</h5>
               <div class="row">
                 <div class="col-6">
-                  <p><strong>Eco-Score:</strong> ${product.ecoscore_grade || 'N/A'}</p>
-                  <p><strong>Nutri-Score:</strong> ${product.nutrition_grades || 'N/A'}</p>
+                  <p><strong>Eco-Score:</strong> ${this.generateEcoScoreImage(product.ecoscore_grade)}</p>
+                  <p><strong>Nutri-Score:</strong> ${this.generateNutriScoreImage(product.nutriscore_grade || product.nutrition_grades)}</p>
                   <p><strong>Calories:</strong> ${nutrients['energy-kcal'] || 'N/A'} kcal</p>
                 </div>
                 <div class="col-6">
