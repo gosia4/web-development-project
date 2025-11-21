@@ -5,13 +5,16 @@
   "scripts": {
     "sass-build": "sass scss/custom.scss dist/css/custom.css",
     "build": "npm run sass-build && webpack --mode=production",
-    "start": "npm run build && ws --port 8000"
+    "start": "npm run build && ws --port 8000",
+    "watch": "webpack --watch --config webpack.config.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/chart.js": "^2.9.41",
     "@types/jquery": "^3.5.33",
+    "@types/socket.io-client": "^1.4.36",
     "local-web-server": "^5.4.0",
     "sass": "^1.93.2",
     "ts-loader": "^9.5.4",
@@ -21,7 +24,9 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
+    "chart.js": "^4.5.1",
     "html5-qrcode": "^2.3.8",
-    "jquery": "^3.7.1"
+    "jquery": "^3.7.1",
+    "socket.io-client": "^4.8.1"
   }
 }

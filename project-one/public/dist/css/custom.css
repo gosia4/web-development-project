@@ -11892,6 +11892,28 @@ body {
   h4 {
     color: #fff;
   }
+  .modal-content {
+    background-color: #343a40;
+    color: #fff;
+  }
+  #detailsContent {
+    background-color: #343a40;
+    color: #fff;
+  }
+  .modal-header, .modal-footer {
+    border-color: #495057;
+  }
+  #searchBtn.btn-outline-secondary {
+    color: #fff;
+    border-color: #3498db;
+  }
+  #searchBtn.btn-outline-secondary:hover,
+  #searchBtn.btn-outline-secondary:focus,
+  #searchBtn.btn-outline-secondary:active {
+    background-color: #3498db;
+    color: #fff;
+    border-color: #3498db;
+  }
 }
 @media (max-width: 575.98px) {
   body {

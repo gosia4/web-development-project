@@ -37,6 +37,31 @@ body {
   h4 {
     color: $white;
   }
+.modal-content {
+    background-color: $gray-800;
+    color: $white;
+  }
+
+  #detailsContent {
+    background-color: $gray-800;
+    color: $white;
+  }
+
+  .modal-header, .modal-footer {
+    border-color: $gray-700;
+  }
+  #searchBtn.btn-outline-secondary {
+    color: #fff;
+    border-color: #3498db;
+  }
+
+  #searchBtn.btn-outline-secondary:hover,
+  #searchBtn.btn-outline-secondary:focus,
+  #searchBtn.btn-outline-secondary:active {
+    background-color: #3498db;
+    color: #fff;
+    border-color: #3498db;
+  }
 }
 
 @include media-breakpoint-down(sm) {

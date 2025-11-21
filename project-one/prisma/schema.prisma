@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  // output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  sid       String   @unique
+  data      String
+  expiresAt DateTime
+}
+
+model User {
+  id        Int        @id @default(autoincrement())
+  scanItems ScanItem[]
+}
+
+model ScanItem {
+  id                 Int        @id @default(autoincrement())
+  name               String     @default("UNKNOWN")
+  ean                String     @default("UNKNOWN")
+  ecoScore           Int        @default(-1)
+  ecoScoreCategory   String     @default("UNKNOWN")
+  nutriScore         Int        @default(-1)
+  nutriScoreCategory String     @default("UNKNOWN")
+  content            String     @default("UNKNOWN")
+  createdAt          DateTime   @default(now())
+  updatedAt          DateTime   @updatedAt
+  userId             Int
+  user               User       @relation(fields: [userId], references: [id])
+  nutrition          Nutrition[]
+}
+
+model Nutrition {
+  id         Int      @id @default(autoincrement())
+  value      Int      @default(-1)
+  name       String   @default("UNKNOWN")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  scanItemsId Int
+  scanItem   ScanItem @relation(fields: [scanItemsId], references: [id])
+}
+
