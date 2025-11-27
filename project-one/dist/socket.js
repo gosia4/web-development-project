@@ -3,10 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getSocketIO = exports.initSocket = void 0;
 const socket_io_1 = require("socket.io");
 let io;
+// Socket.IO initialisieren, um Echtzeit-Kommunikation zu ermöglichen
 const initSocket = (httpServer) => {
     io = new socket_io_1.Server(httpServer, {
         cors: {
-            origin: '*', // Pozwól na połączenia z dowolnego źródła w celach deweloperskich
+            origin: '*',
             methods: ['GET', 'POST'],
         },
     });
@@ -15,7 +16,6 @@ const initSocket = (httpServer) => {
         socket.on('disconnect', () => {
             console.log('User disconnected:', socket.id);
         });
-        // Możesz tutaj dodać inne listenery, jeśli potrzebne
     });
     return io;
 };

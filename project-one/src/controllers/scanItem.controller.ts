@@ -23,14 +23,6 @@ export const createScanItem = async (req: Request, res: Response) => {
                 nutriScoreCategory: nutriScoreCategory || 'UNKNOWN',
                 content: content || 'UNKNOWN',
                 userId: userId,
-                // nutrition: {
-                //     create: nutrition
-                //         ? Object.entries(nutrition).map(([nutrientName, nutrientValue]) => ({
-                //               name: nutrientName,
-                //               value: typeof nutrientValue === 'number' ? nutrientValue : -1,
-                //           }))
-                //         : [],
-                // },
                 nutrition: {
                     create: Array.isArray(nutrition)
                         ? nutrition.map((nutrient) => ({
@@ -44,9 +36,6 @@ export const createScanItem = async (req: Request, res: Response) => {
             include: { nutrition: true },
         });
 
-        // ---------------------------
-        // 🔥 WYŚLIJ DO WSZYSTKICH KLIENTÓW
-        // ---------------------------
         const io = getSocketIO();
         io.emit('newScanItem', newScanItem);
 

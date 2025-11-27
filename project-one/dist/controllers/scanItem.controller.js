@@ -21,14 +21,6 @@ const createScanItem = async (req, res) => {
                 nutriScoreCategory: nutriScoreCategory || 'UNKNOWN',
                 content: content || 'UNKNOWN',
                 userId: userId,
-                // nutrition: {
-                //     create: nutrition
-                //         ? Object.entries(nutrition).map(([nutrientName, nutrientValue]) => ({
-                //               name: nutrientName,
-                //               value: typeof nutrientValue === 'number' ? nutrientValue : -1,
-                //           }))
-                //         : [],
-                // },
                 nutrition: {
                     create: Array.isArray(nutrition)
                         ? nutrition.map((nutrient) => ({
@@ -40,9 +32,6 @@ const createScanItem = async (req, res) => {
             },
             include: { nutrition: true },
         });
-        // ---------------------------
-        // 🔥 WYŚLIJ DO WSZYSTKICH KLIENTÓW
-        // ---------------------------
         const io = (0, socket_1.getSocketIO)();
         io.emit('newScanItem', newScanItem);
         console.log(`[Socket.IO] Emitted 'newScanItem' for item ID: ${newScanItem.id}`);
